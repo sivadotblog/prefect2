@@ -1,0 +1,80 @@
+###
+### A complete description of a Prefect Deployment for flow 'my-favorite-function'
+###
+name: myflow
+description: null
+version: c0b698a3fd7f81aba0ba786905d701a6
+# The work queue that will handle this deployment's runs
+work_queue_name: test_queue
+work_pool_name: test
+tags: []
+parameters: {}
+schedule: null
+is_schedule_active: true
+infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: my-favorite-function
+manifest_path: null
+infrastructure:
+  type: kubernetes-job
+  env:
+    EXTRA_PIP_PACKAGES: null
+    PREFECT_LOGGING_LEVEL: INFO
+  labels: {}
+  name: null
+  command: null
+  image: prefecthq/prefect:2.11-python3.10
+  namespace: default
+  service_account_name: null
+  image_pull_policy: Always
+  cluster_config: null
+  job:
+    apiVersion: batch/v1
+    kind: Job
+    metadata:
+      labels: {}
+    spec:
+      template:
+        spec:
+          parallelism: 1
+          completions: 1
+          restartPolicy: Never
+          containers:
+          - name: prefect-job
+            env: []
+  customizations: []
+  job_watch_timeout_seconds: 6000
+  pod_watch_timeout_seconds: 6000
+  stream_output: true
+  finished_job_ttl: null
+  _block_document_id: ab4f3103-1a00-4476-a0a7-5a26d26e06e3
+  _block_document_name: k8s
+  _is_anonymous: false
+  block_type_slug: kubernetes-job
+  _block_type_slug: kubernetes-job
+storage:
+  repository: https://github.com/sivadotblog/prefect2.git
+  reference: null
+  access_token: null
+  include_git_objects: true
+  _block_document_id: ebeba682-6dbf-4960-bb1e-23aa1a1d9b24
+  _block_document_name: code
+  _is_anonymous: false
+  block_type_slug: github
+  _block_type_slug: github
+path: ''
+entrypoint: prefect-ch1-flows.py:my_favorite_function
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    name:
+      title: name
+      default: getting_started
+      position: 0
+  required: null
+  definitions: null
+timestamp: '2023-08-28T03:34:27.319424+00:00'
